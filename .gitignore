@@ -1,0 +1,23 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+users.json
+
+# Data and logs (they contain real messages and schedules)
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.jsonl
+*.log
+logs/
+data/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+env/

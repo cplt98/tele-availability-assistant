@@ -1,0 +1,7 @@
+{
+  "users": [
+    { "telegram_id": 100000001, "name": "Alex" },
+    { "telegram_id": 100000002, "name": "Sam" },
+    { "telegram_id": 100000003, "name": "Jordan" }
+  ]
+}
