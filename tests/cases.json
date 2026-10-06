@@ -1,0 +1,279 @@
+{
+  "description": "Example messages and the result the assistant should produce for each. Names are dummy people (see users.example.json). Each case fixes 'today', so the expected dates never depend on the real date.",
+  "cases": [
+    {
+      "id": "wfh-tmr",
+      "text": "wfh tmr",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "relative-date", "shorthand"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-08", "status": "wfh" }]
+      }
+    },
+    {
+      "id": "office-next-wed",
+      "text": "office next Wed",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "relative-date", "tricky"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-14", "status": "office" }]
+      }
+    },
+    {
+      "id": "half-day-friday",
+      "text": "half day fri",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "half-day", "shorthand"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-09", "status": "half_day" }]
+      }
+    },
+    {
+      "id": "other-person-range",
+      "text": "Sam office Thu to Fri",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["update", "other-person", "range"],
+      "expected": {
+        "intent": "update",
+        "entries": [
+          { "person": "Sam", "date": "2026-10-08", "status": "office" },
+          { "person": "Sam", "date": "2026-10-09", "status": "office" }
+        ]
+      }
+    },
+    {
+      "id": "mixed-statuses-rest-wfh",
+      "text": "office Mon Tue, half day Wed, rest WFH",
+      "sender": "Alex",
+      "today": "2026-10-05",
+      "tags": ["update", "multi-status", "half-day", "range", "tricky"],
+      "expected": {
+        "intent": "update",
+        "entries": [
+          { "person": "Alex", "date": "2026-10-05", "status": "office" },
+          { "person": "Alex", "date": "2026-10-06", "status": "office" },
+          { "person": "Alex", "date": "2026-10-07", "status": "half_day" },
+          { "person": "Alex", "date": "2026-10-08", "status": "wfh" },
+          { "person": "Alex", "date": "2026-10-09", "status": "wfh" }
+        ]
+      }
+    },
+    {
+      "id": "date-without-year",
+      "text": "15 Oct wfh",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "date-format"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-15", "status": "wfh" }]
+      }
+    },
+    {
+      "id": "typo-office",
+      "text": "ofice fri",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "typo", "tricky"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-09", "status": "office" }]
+      }
+    },
+    {
+      "id": "singlish-update",
+      "text": "alex wfh tmr lah",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["update", "singlish", "other-person", "relative-date"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-08", "status": "wfh" }]
+      }
+    },
+    {
+      "id": "singlish-mc",
+      "text": "i mc tmr leh",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "singlish", "leave", "relative-date", "tricky"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-08", "status": "leave" }]
+      }
+    },
+    {
+      "id": "leave-range",
+      "text": "on leave 12 to 14 oct",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "leave", "range", "date-format"],
+      "expected": {
+        "intent": "update",
+        "entries": [
+          { "person": "Alex", "date": "2026-10-12", "status": "leave" },
+          { "person": "Alex", "date": "2026-10-13", "status": "leave" },
+          { "person": "Alex", "date": "2026-10-14", "status": "leave" }
+        ]
+      }
+    },
+    {
+      "id": "two-people-one-message",
+      "text": "Sam wfh Mon, Jordan office Mon",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "multi-person", "relative-date"],
+      "expected": {
+        "intent": "update",
+        "entries": [
+          { "person": "Jordan", "date": "2026-10-12", "status": "office" },
+          { "person": "Sam", "date": "2026-10-12", "status": "wfh" }
+        ]
+      }
+    },
+    {
+      "id": "clear-friday",
+      "text": "actually not sure about friday",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "clear", "tricky"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-09", "status": "clear" }]
+      }
+    },
+    {
+      "id": "query-today",
+      "text": "is sam wfh today",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["query", "no-question-mark"],
+      "expected": {
+        "intent": "query",
+        "queries": [{ "person": "Sam", "start_date": "2026-10-07", "end_date": "2026-10-07" }]
+      }
+    },
+    {
+      "id": "query-or-choice",
+      "text": "sam in office tmr or wfh",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["query", "no-question-mark", "relative-date", "shorthand"],
+      "expected": {
+        "intent": "query",
+        "queries": [{ "person": "Sam", "start_date": "2026-10-08", "end_date": "2026-10-08" }]
+      }
+    },
+    {
+      "id": "query-singlish",
+      "text": "sam coming in tmr anot",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["query", "singlish", "no-question-mark", "relative-date", "tricky"],
+      "expected": {
+        "intent": "query",
+        "queries": [{ "person": "Sam", "start_date": "2026-10-08", "end_date": "2026-10-08" }]
+      }
+    },
+    {
+      "id": "query-this-week",
+      "text": "whats sam schedule this week",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["query", "range", "no-question-mark"],
+      "expected": {
+        "intent": "query",
+        "queries": [{ "person": "Sam", "start_date": "2026-10-05", "end_date": "2026-10-09" }]
+      }
+    },
+    {
+      "id": "query-everyone",
+      "text": "who is in the office friday",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["query", "everyone", "no-question-mark"],
+      "expected": {
+        "intent": "query",
+        "queries": [{ "person": null, "start_date": "2026-10-09", "end_date": "2026-10-09" }]
+      }
+    },
+    {
+      "id": "unclear-needs-a-question",
+      "text": "wfh",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "tricky", "no-day"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "bare-office",
+      "text": "office",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "no-day"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "bare-half-day",
+      "text": "half day",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "no-day", "half-day"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "bare-leave",
+      "text": "on leave",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "no-day", "leave"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "other-person-no-day",
+      "text": "Sam wfh",
+      "sender": "Jordan",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "no-day", "other-person"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "singlish-no-day",
+      "text": "wfh lah",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["ambiguous", "no-day", "singlish"],
+      "expected": {
+        "question": true
+      }
+    },
+    {
+      "id": "wfh-today-needs-no-question",
+      "text": "wfh today",
+      "sender": "Alex",
+      "today": "2026-10-07",
+      "tags": ["update", "relative-date", "control"],
+      "expected": {
+        "intent": "update",
+        "entries": [{ "person": "Alex", "date": "2026-10-07", "status": "wfh" }]
+      }
+    }
+  ]
+}
