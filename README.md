@@ -71,7 +71,7 @@ Gemini reads a message and returns structured data: telling or asking, who, whic
 ## Evaluation
 
 - **286 automated tests** with Gemini, Telegram and ElevenLabs faked, so they cost nothing to run.
-- **Accuracy cases:** `tests/cases.json` has 24 realistic messages (typos, shorthand like "tmr", Singlish, half days, ranges, questions without a question mark, and messages with no day) with the expected result for each, run with `python -m tests.run_eval`. On 6 Oct 2026, with `gemini-3.1-flash-lite`, **all 24 pass**. An earlier prompt assumed "today" when a message had no day (a bare "wfh"); one added rule fixed it, checked with six new cases.
+- **Accuracy cases:** `tests/cases.json` has 24 realistic messages (typos, shorthand like "tmr", Singlish, half days, ranges, questions without a question mark, and messages with no day) with the expected result for each, run with `python -m tests.run_eval`. With `gemini-3.1-flash-lite`, **all 24 pass**.
 
 ## What I'd do next
 
