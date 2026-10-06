@@ -2,7 +2,7 @@
 
 A Telegram scheduling assistant, built in Python with Claude Code. People tell it where they will be (in the office, working from home, a half day, or on leave), a day or a whole week at a time, and ask it things like "who's in on Wednesday?". With ElevenLabs Speech to Text and Text to Speech, they can ask by voice note and hear the answer.
 
-<img src="docs/example.png" alt="Example conversation with the demo bot: a text update with confirmation, a text question, and a voice question answered in text and speech" width="460">
+<img src="example.png" alt="Example conversation with the demo bot: a text update with confirmation, a text question, and a voice question answered in text and speech" width="460">
 
 ## Example conversation
 
